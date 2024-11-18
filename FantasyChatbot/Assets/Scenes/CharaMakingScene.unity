@@ -566,14 +566,14 @@ MonoBehaviour:
   playerSex: 
   playerJob: 
   playerDetails: 
-  MaleKnightPrefab: {fileID: 0}
-  MaleMagicianPrefab: {fileID: 0}
-  MaleAssassinPrefab: {fileID: 0}
-  MalePriestPrefab: {fileID: 0}
+  MaleKnightPrefab: {fileID: 9008570824590161143, guid: 8a1a7b6e1cca77b43a22c581794e0c87, type: 3}
+  MaleMagicianPrefab: {fileID: 2982244098359736499, guid: bbd103104bceca043ae6ad5f973a3509, type: 3}
+  MaleAssassinPrefab: {fileID: 7972967272837553965, guid: 584d65258340ca84db1bc17c58eb6b64, type: 3}
+  MalePriestPrefab: {fileID: 767704093706779040, guid: b024b5c4f9e4f664a8fd828f289c5d91, type: 3}
   femaleKnightPrefab: {fileID: 6224859114684088611, guid: 1e6a22b3fadec3e44a871c14f603ecc0, type: 3}
   femaleMagicianPrefab: {fileID: 6553807168865281376, guid: 91d98f5de8adae249ba832168b5275f4, type: 3}
-  femaleAssassinPrefab: {fileID: 0}
-  femalePriestessPrefab: {fileID: 0}
+  femaleAssassinPrefab: {fileID: 2046086223456782941, guid: c3c1c66e3d50ead428dabcf180da054f, type: 3}
+  femalePriestessPrefab: {fileID: 7095749468260875390, guid: 5e3d63b15032bc341b26aa35212f2800, type: 3}
   currentProfilePrefab: {fileID: 0}
 --- !u!1 &62366897
 GameObject:
@@ -2300,14 +2300,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: aafb84c8013aec64ead3cafbfb762b44, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4576,7 +4576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &663193266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6073,8 +6073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: 1}
-  m_SizeDelta: {x: 400, y: 600}
+  m_AnchoredPosition: {x: -1, y: -49}
+  m_SizeDelta: {x: 400, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842081863
 MonoBehaviour:
@@ -6096,7 +6096,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3ffe21558da0e6140ae2ee5882bf52ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19df4a07ab0705a4fb23e502c850f10d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

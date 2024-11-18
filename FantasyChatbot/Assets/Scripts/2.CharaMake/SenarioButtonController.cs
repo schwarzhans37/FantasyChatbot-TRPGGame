@@ -44,7 +44,7 @@ public class SenarioButtonController : MonoBehaviour
     {
         selectedSenario = Senario.Arisu;
         UpdateConfirmButton();
-        PlayerDataManager.Instance.SetPlayerSelectedSenario("Arisu RPG");
+        PlayerDataManager.Instance.SetPlayerSelectedSenario("SenarioName: ArisuRPG Story: ArisuRPG는 마법을 사용할 수 있고 마왕 및 마족이 있는 중세 판타지를 배경으로 하고 있습니다. " + PlayerDataManager.Instance.playerName + "은 에리스 왕국의 평화를 위협하는 마왕 벨제부브와 그의 부하들을 쓰러뜨려 다시금 세계의 평화를 되찾기 위한 여정길에 오릅니다. ArisuRPG는 캐릭터가 아닙니다. 이 스토리의 진행자로서 " + PlayerDataManager.Instance.playerName + "의 이야기를 진행시켜 주세요.");
     }
 
     // 홈 버튼을 누를 시 호출될 메서드

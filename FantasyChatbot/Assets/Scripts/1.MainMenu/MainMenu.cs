@@ -13,6 +13,12 @@ public class TextBlink : MonoBehaviour
 
     private bool isBlinking = true;
 
+    private void Awake()
+    {
+        Screen.SetResolution(1920, 1080, false);
+        Screen.fullScreen = true;
+    }
+
     private void Start()
     {
         StartCoroutine(BlinkText()); // 점멸 애니메이션 시작
