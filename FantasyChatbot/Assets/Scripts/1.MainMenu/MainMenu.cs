@@ -10,6 +10,9 @@ public class TextBlink : MonoBehaviour
     public float blinkDuration = 2.0f; // 알파값 점멸 주기 (1초)
     public float fadeOutDuration = 0.5f; // 입력 후 알파값이 서서히 줄어드는 시간 (0.5초)
     public List<Button> MainMenuButtons; // 버튼 리스트
+    public AudioSource backgroundMusic; // 배경 음악 오디오 소스
+    public AudioSource buttonClickSound; // 버튼 클릭 소리 오디오 소스
+    [Range(0f, 1f)] public float musicVolume = 0.2f; // 배경 음악 볼륨 (0 ~ 1 범위)
 
     private bool isBlinking = true;
 
@@ -22,6 +25,19 @@ public class TextBlink : MonoBehaviour
     private void Start()
     {
         StartCoroutine(BlinkText()); // 점멸 애니메이션 시작
+
+        // 배경 음악 설정 및 재생
+        if (backgroundMusic != null)
+        {
+            backgroundMusic.volume = musicVolume;
+            backgroundMusic.Play();
+        }
+
+        // 버튼 클릭 시 소리 재생 이벤트 추가
+        foreach (Button button in MainMenuButtons)
+        {
+            button.onClick.AddListener(() => PlayButtonClickSound());
+        }
     }
 
     private void Update()
@@ -34,6 +50,12 @@ public class TextBlink : MonoBehaviour
                 isBlinking = false; // 점멸 중단
                 StartCoroutine(FadeOutText()); // 텍스트 서서히 사라짐
             }
+        }
+
+        // 배경 음악 볼륨 수동 조절
+        if (backgroundMusic != null)
+        {
+            backgroundMusic.volume = musicVolume;
         }
     }
 
@@ -143,6 +165,14 @@ public class TextBlink : MonoBehaviour
             }
 
             button.interactable = true;
+        }
+    }
+
+    private void PlayButtonClickSound()
+    {
+        if (buttonClickSound != null)
+        {
+            buttonClickSound.Play();
         }
     }
 }

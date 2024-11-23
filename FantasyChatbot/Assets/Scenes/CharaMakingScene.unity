@@ -787,11 +787,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedSenario: 
+  senarioPrompt: 
   playerName: 
   playerSex: 
   playerJob: 
   playerHP: 0
+  currentHP: 0
   playerMP: 0
+  currentMP: 0
   playerGold: 0
   playerDetails: 
   MaleKnightPrefab: {fileID: 570629239501024482, guid: 1b5adca7c62bc9f41953bdd77530c905, type: 3}
@@ -2589,8 +2592,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68, y: -48}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: -61, y: -97}
+  m_SizeDelta: {x: 600, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293876197
 MonoBehaviour:
@@ -2612,7 +2615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 320ebe9cf4bcc1f4489c51f84b901b52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f6b35ae89c5b4c4b9f09ad00c6d0f4a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3083,7 +3086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b1bd2925b25f6334f8cbf97363e03f1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0101f03cec60a064ea140a6ef2b1f4e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3160,8 +3163,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD14C\uC2A4\uD2B8 \uC2DC\uB098\uB9AC\uC624 \n---------------------------------------------------------------------\n\uC81C\uC791\uC911\uC778
     \uC2DC\uB098\uB9AC\uC624 \uC785\uB2C8\uB2E4.\n\uB2E4\uC74C \uC5C5\uB370\uC774\uD2B8\uB97C
-    \uAE30\uB300\uD574\uC8FC\uC138\uC694.\n\n\uB098\uAE30\uC0AC\uB2D8\uC740 \uC5B8\uC81C\uB098
-    \uACF5\uC0AC\uB2E4\uB9DD\uD558\uC2DC\uB124\uC694."
+    \uAE30\uB300\uD574\uC8FC\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
   m_sharedMaterial: {fileID: -6576355902149967249, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
@@ -12077,8 +12079,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uD14C\uC2A4\uD2B8 \uC2DC\uB098\uB9AC\uC624 2\n---------------------------------------------------------------------\n\uC81C\uC791\uC911\uC778
     \uC2DC\uB098\uB9AC\uC624 \uC785\uB2C8\uB2E4.\n\uB2E4\uC74C \uC5C5\uB370\uC774\uD2B8\uB97C
-    \uAE30\uB300\uD574\uC8FC\uC138\uC694.\n\n\uB098\uAE30\uC0AC\uB2D8\uC740 \uC5B8\uC81C\uB098
-    \uACF5\uC0AC\uB2E4\uB9DD\uD558\uC2DC\uB124\uC694."
+    \uAE30\uB300\uD574\uC8FC\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
   m_sharedMaterial: {fileID: -6576355902149967249, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
@@ -15682,11 +15683,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arisu RPG\n---------------------------------------------------------------------\n\uB9C8\uBC95
+  m_text: "Arisu RPG\n----------------------------------------------------------------------------------\n\uB9C8\uBC95
     \uC0AC\uC6A9\uC774 \uAC00\uB2A5\uD55C \uC911\uC138 \uBC30\uACBD\uC758 \uD310\uD0C0\uC9C0
-    \uC138\uACC4\uAC00 \uBC30\uACBD\uC785\uB2C8\uB2E4.\n\uB9C8\uC655\uC744 \uC4F0\uB7EC\uB728\uB9AC\uAE30
-    \uC704\uD55C \uC5EC\uC815\uC758 \uAE38\uC5D0 \uC624\uB974\uC2ED\uC2DC\uC624.\n\n\uC6B0\uB9AC
-    \uD478\uB9AC\uB098 \uC608\uC058\uC8E0?"
+    \uC138\uACC4\uAC00 \uBC30\uACBD\uC785\uB2C8\uB2E4.\n\uB9C8\uC655 \uBCA8\uC81C\uBD80\uBE0C\uB97C
+    \uC4F0\uB7EC\uB728\uB9AC\uAE30 \uC704\uD55C \uC5EC\uC815\uC758 \uAE38\uC5D0 \uC624\uB974\uC2ED\uC2DC\uC624.\n\n\uC774
+    \uC774\uC57C\uAE30\uB294 \uC704\uADF8\uB4DC\uB77C\uC2E4 \uB300\uB959, \uC778\uAC04\uB4E4\uC758
+    \uAD6D\uAC00\uC778 \uC5D0\uB9AC\uC2A4 \uC81C\uAD6D\uC5D0\uC11C \uC2DC\uC791\uB429\uB2C8\uB2E4.
+    \uB2F9\uC2E0\uC758 \uCE90\uB9AD\uD130\uB97C \uC0DD\uC131\uD558\uACE0 \uC774\uC57C\uAE30\uB97C
+    \uC990\uACA8\uBCF4\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
   m_sharedMaterial: {fileID: -6576355902149967249, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
@@ -17296,7 +17300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b1bd2925b25f6334f8cbf97363e03f1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0101f03cec60a064ea140a6ef2b1f4e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -49,7 +49,7 @@ public class SenarioButtonController : MonoBehaviour
         );
         PlayerDataManager.Instance.SetSenarioPrompt(
             "[Scenario Name]: ArisuRPG Story\n" +
-            "[Synopsis]: " + PlayerDataManager.Instance.playerName + "은 에리스 왕국의 평화를 위협하는 마왕 벨제부브와 그의 부하들을 쓰러뜨려 세계의 평화를 되찾기 위한 여정길에 오릅니다.\n" +
+            "[Synopsis]: " + PlayerDataManager.Instance.playerName + "은 위그드라실 대륙의 인간들이 세운 국가인 에리스 제국을 배경으로 합니다. 제국의 평화를 위협하는 마왕 벨제부브와 그의 부하들을 쓰러뜨려 세계의 평화를 되찾기 위한 여정길에 오릅니다.\n" +
             "ArisuRPG는 캐릭터가 아닙니다. 이 스토리의 진행자로서 " + PlayerDataManager.Instance.playerName + "의 이야기를 진행시켜 주세요.\n" +
             "[Character Information]:\n" +
             "Name: " + PlayerDataManager.Instance.playerName + "\n" +
