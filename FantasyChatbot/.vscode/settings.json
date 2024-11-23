@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "FantasyChatbot.sln"
+    "dotnet.defaultSolution": "FantasyChatbot.sln",
+    "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }
