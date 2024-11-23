@@ -44,7 +44,42 @@ public class SenarioButtonController : MonoBehaviour
     {
         selectedSenario = Senario.Arisu;
         UpdateConfirmButton();
-        PlayerDataManager.Instance.SetPlayerSelectedSenario("SenarioName: ArisuRPG Story: ArisuRPG는 마법을 사용할 수 있고 마왕 및 마족이 있는 중세 판타지를 배경으로 하고 있습니다. " + PlayerDataManager.Instance.playerName + "은 에리스 왕국의 평화를 위협하는 마왕 벨제부브와 그의 부하들을 쓰러뜨려 다시금 세계의 평화를 되찾기 위한 여정길에 오릅니다. ArisuRPG는 캐릭터가 아닙니다. 이 스토리의 진행자로서 " + PlayerDataManager.Instance.playerName + "의 이야기를 진행시켜 주세요.");
+        PlayerDataManager.Instance.SetPlayerSelectedSenario(" 시나리오 : ArisuRPG\n" +
+            "--------------------------------------------------------------------\n"
+        );
+        PlayerDataManager.Instance.SetSenarioPrompt(
+            "[Scenario Name]: ArisuRPG Story\n" +
+            "[Synopsis]: " + PlayerDataManager.Instance.playerName + "은 에리스 왕국의 평화를 위협하는 마왕 벨제부브와 그의 부하들을 쓰러뜨려 세계의 평화를 되찾기 위한 여정길에 오릅니다.\n" +
+            "ArisuRPG는 캐릭터가 아닙니다. 이 스토리의 진행자로서 " + PlayerDataManager.Instance.playerName + "의 이야기를 진행시켜 주세요.\n" +
+            "[Character Information]:\n" +
+            "Name: " + PlayerDataManager.Instance.playerName + "\n" +
+            "Sex: " + PlayerDataManager.Instance.playerSex + "\n" +
+            "Job: " + PlayerDataManager.Instance.playerJob + "\n" +
+            "Max HP: " + PlayerDataManager.Instance.playerHP + "\n" +
+            "Current HP: " + PlayerDataManager.Instance.currentHP + "\n" +
+            "Max MP: " + PlayerDataManager.Instance.playerMP + "\n" +
+            "Current MP: " + PlayerDataManager.Instance.currentMP + "\n" +
+            "Gold: " + PlayerDataManager.Instance.playerGold + "\n" +
+            "Details: " + PlayerDataManager.Instance.playerDetails + "\n" +
+            "이 정보를 기반으로, " + PlayerDataManager.Instance.playerName + "의 체력, 마나, 소지금을 적절히 사용하여 스토리를 진행시켜 주세요.\n" +
+            "**플레이어의 상황에 따라 반드시 아래 명시된 형식을 사용해서만 응답해 주세요. 다른 형식은 사용하지 말아 주세요**:\n\n" +
+            "**플레이어의 게임 내 상태를 정확하게 추적하고 데이터를 파싱하기 위해 반드시 필요한 양식입니다. 응답 형식을 반드시 지켜야 합니다.**\n" +
+            "**체력 변화:** '체력 <변화량>', 예: '체력 -20'\n" +
+            "**마나 변화:** '마나 <변화량>', 예: '마나 +15'\n" +
+            "**골드 변화:** '골드 <변화량>', 예: '골드 -50'\n\n" +
+            "**각 변화는 반드시 개별적으로 한 줄씩 표현해 주세요. 예시**:\n" +
+            "- 체력이 10 감소하고 마나가 5 감소하는 경우:\n" +
+            "  체력 -10\n" +
+            "  마나 -5\n" +
+            "- 상점에서 물건을 산 경우:\n" +
+            "  골드 -50\n\n" +
+            "**중요:**\n" +
+            "- 플레이어의 체력(HP)이 0 이하가 된다면, 플레이어가 사망 혹은 행동 불능 상태로 판단하세요.\n" +
+            "- 마나(MP)가 0 이하라면, 스킬을 사용할 수 없다고 판단하세요.\n" +
+            "- 각 변화량은 최대 체력/마나를 초과하지 않도록 제한해 주세요.\n" +
+            "- 체력, 마나, 골드의 변화는 명확하게 기술되어야 하며, 해당하는 수치 외에 다른 설명이나 장황한 묘사는 하지 말아 주세요.\n" +
+            "- 응답 후, 자신이 제공한 정보가 요청된 형식을 따르는지 점검해 주세요. 형식이 맞지 않을 경우 다시 작성해 주세요.\n"
+        );
     }
 
     // 홈 버튼을 누를 시 호출될 메서드

@@ -8,6 +8,9 @@ public class PlayerInfoUpdater : MonoBehaviour
     public TMP_InputField playerNameInput;
     public TMP_InputField playerSexInput;
     public TMP_InputField playerJobInput;
+    public TMP_InputField playerHPInput;
+    public TMP_InputField playerMPInput;
+    public TMP_InputField playerGoldInput;
     public TMP_InputField playerDetailsInput;
 
     private void OnEnable()
@@ -36,6 +39,9 @@ public class PlayerInfoUpdater : MonoBehaviour
         {
             playerSexInput.text = PlayerDataManager.Instance.playerSex;
             playerJobInput.text = PlayerDataManager.Instance.playerJob;
+            playerHPInput.text = PlayerDataManager.Instance.playerHP.ToString();
+            playerMPInput.text = PlayerDataManager.Instance.playerMP.ToString();
+            playerGoldInput.text = PlayerDataManager.Instance.playerGold.ToString();
         }
     }
 }

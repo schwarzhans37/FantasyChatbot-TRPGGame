@@ -17,8 +17,8 @@ public class PlayerInfoButtonController : MonoBehaviour
 
     public Button confirmButton; // 확인 버튼
 
-    private string anthropicAPIurl = "https://api.anthropic.com/v1/messages";
-    private string anthropicAPIkey = "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";
+    private string anthropicAPIurl = "https://api.openai.com/v1/chat/completions";
+    private string anthropicAPIkey = "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";
 
     void Start()
     {
@@ -78,7 +78,7 @@ public class PlayerInfoButtonController : MonoBehaviour
             request.SetRequestHeader("x-api-key", anthropicAPIkey);
             request.SetRequestHeader("Anthropic-Version", "2023-06-01");
 
-            // 인증서 확인 무시 (테스트용)
+            // 인증서 확인 무시
             request.certificateHandler = new AcceptAllCertificatesSignedWithNoCheck();
 
             yield return request.SendWebRequest();
@@ -110,6 +110,9 @@ public class PlayerInfoButtonController : MonoBehaviour
         sb.AppendLine("Player Name: " + PlayerDataManager.Instance.playerName);
         sb.AppendLine("Player Sex: " + PlayerDataManager.Instance.playerSex);
         sb.AppendLine("Player Job: " + PlayerDataManager.Instance.playerJob);
+        sb.AppendLine("Player HP: " + PlayerDataManager.Instance.playerHP);
+        sb.AppendLine("Player MP: " + PlayerDataManager.Instance.playerMP);
+        sb.AppendLine("Player Gold: " + PlayerDataManager.Instance.playerGold);
         sb.AppendLine("Player Details: " + PlayerDataManager.Instance.playerDetails);
 
         return sb.ToString();
@@ -131,7 +134,14 @@ public class PlayerInfoButtonController : MonoBehaviour
                     role = "user", 
                     content = new[]
                     {
-                        new { type = "text", text = "Scenario: " + PlayerDataManager.Instance.selectedSenario + ", Player Name: " + PlayerDataManager.Instance.playerName + ", Player Sex: " + PlayerDataManager.Instance.playerSex + ", Player Job: " + PlayerDataManager.Instance.playerJob + ", Player Details: " + PlayerDataManager.Instance.playerDetails }
+                        new { type = "text", text = "Scenario: " + PlayerDataManager.Instance.selectedSenario 
+                        + ", Player Name: " + PlayerDataManager.Instance.playerName 
+                        + ", Player Sex: " + PlayerDataManager.Instance.playerSex 
+                        + ", Player Job: " + PlayerDataManager.Instance.playerJob
+                        + ", Player HP: " + PlayerDataManager.Instance.playerHP
+                        + ", Player MP: " + PlayerDataManager.Instance.playerMP
+                        + ", Player Gold: " + PlayerDataManager.Instance.playerGold 
+                        + ", Player Details: " + PlayerDataManager.Instance.playerDetails }
                     }
                 }
             }

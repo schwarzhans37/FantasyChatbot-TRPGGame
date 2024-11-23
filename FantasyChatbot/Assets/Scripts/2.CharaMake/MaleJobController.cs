@@ -25,6 +25,11 @@ public class MaleJobController : MonoBehaviour
         selectedJob = MaleJobs.MKnight;
         UpdateConfirmButton();
         PlayerDataManager.Instance.SetPlayerJob("기사");
+        PlayerDataManager.Instance.SetPlayerHP(250);
+        PlayerDataManager.Instance.SetCurrentHP(250);
+        PlayerDataManager.Instance.SetPlayerMP(100);
+        PlayerDataManager.Instance.SetCurrentMP(100);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 남성 마법사 선택 시 호출될 메서드
@@ -33,6 +38,11 @@ public class MaleJobController : MonoBehaviour
         selectedJob = MaleJobs.MMagician;
         UpdateConfirmButton();
         PlayerDataManager.Instance.SetPlayerJob("마법사");
+        PlayerDataManager.Instance.SetPlayerHP(100);
+        PlayerDataManager.Instance.SetCurrentHP(100);
+        PlayerDataManager.Instance.SetPlayerMP(250);
+        PlayerDataManager.Instance.SetCurrentMP(250);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 남성 궁수 선택 시 호출될 메서드
@@ -41,6 +51,11 @@ public class MaleJobController : MonoBehaviour
         selectedJob = MaleJobs.MArcher;
         UpdateConfirmButton();
         PlayerDataManager.Instance.SetPlayerJob("궁수");
+        PlayerDataManager.Instance.SetPlayerHP(200);
+        PlayerDataManager.Instance.SetCurrentHP(200);
+        PlayerDataManager.Instance.SetPlayerMP(150);
+        PlayerDataManager.Instance.SetCurrentMP(150);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 남성 성직자 선택 시 호출될 메서드
@@ -48,7 +63,11 @@ public class MaleJobController : MonoBehaviour
     {
         selectedJob = MaleJobs.MPriest;
         UpdateConfirmButton();
-        PlayerDataManager.Instance.SetPlayerJob("성직자");
+        PlayerDataManager.Instance.SetPlayerHP(150);
+        PlayerDataManager.Instance.SetCurrentHP(150);
+        PlayerDataManager.Instance.SetPlayerMP(200);
+        PlayerDataManager.Instance.SetCurrentMP(200);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 확인 버튼을 누를 시 호출될 메서드
@@ -91,7 +110,14 @@ public class MaleJobController : MonoBehaviour
 
         if (prefabToInstantiate != null)
         {
-            Instantiate(prefabToInstantiate, PlayerInfomations);
+            // 기존에 생성된 프리팹이 있다면 삭제합니다.
+            if (PlayerDataManager.Instance.currentProfilePrefab != null)
+            {
+                Destroy(PlayerDataManager.Instance.currentProfilePrefab);
+            }
+
+            // 새로운 프리팹을 생성하고, 생성된 프리팹을 currentProfilePrefab에 저장합니다.
+            PlayerDataManager.Instance.currentProfilePrefab = Instantiate(prefabToInstantiate, PlayerInfomations);
         }
     }
 

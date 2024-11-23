@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using System.Text;
+using System;
+using System.Text.RegularExpressions;
 
 public class PlayerChatController : MonoBehaviour
 {
     public TMP_InputField chatInputField; // 채팅 입력 필드
     public Button sendButton; // 채팅 메시지 전송 버튼
     public TextMeshProUGUI chatLogText; // 채팅 로그 UI (채팅 내용을 표시)
-
-    private string anthropicAPIurl = "https://api.anthropic.com/v1/messages";
-    private string anthropicAPIkey = "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"; // 실제 키로 변경해야 합니다.
+    private string pythonServerUrl = "http://localhost:5000/process_response";
+    private string openaiAPIurl = "https://api.openai.com/v1/chat/completions";
+    private string openaiAPIkey = "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"; // 실제 키로 변경해야 합니다.
 
     private void Start()
     {
@@ -28,10 +30,10 @@ public class PlayerChatController : MonoBehaviour
         if (!string.IsNullOrEmpty(userMessage))
         {
             // 채팅 로그에 사용자의 메시지 추가
-            AddMessageToChatLog("You: " + userMessage);
+            AddMessageToChatLog("<color=orange>Player: </color></color=white>" + userMessage + "</color>");
             
-            // Claude에게 메시지를 전송
-            StartCoroutine(SendMessageToClaude(userMessage));
+            // GPT에게 메시지를 전송
+            StartCoroutine(SendMessageToGPT(userMessage));
 
             // 입력 필드 초기화
             chatInputField.text = string.Empty;
@@ -44,61 +46,52 @@ public class PlayerChatController : MonoBehaviour
         chatLogText.text += message + "\n";
     }
 
-    private IEnumerator SendMessageToClaude(string userMessage)
+    private IEnumerator SendMessageToGPT(string userMessage)
     {
         string requestJson = CreateChatJson(userMessage);
 
-        using (UnityWebRequest request = new UnityWebRequest(anthropicAPIurl, "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(openaiAPIurl, "POST"))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(requestJson);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("x-api-key", anthropicAPIkey);
-            request.SetRequestHeader("anthropic-version", "2023-06-01");
+            request.SetRequestHeader("Authorization", "Bearer " + openaiAPIkey);
 
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError("Error Sending Chat Message to Claude: " + request.error);
+                Debug.LogError("Error Sending Chat Message to GPT: " + request.error);
             }
             else
             {
-                // 성공적으로 응답을 받았을 때 Claude의 답변을 채팅 로그에 추가
+                // 성공적으로 응답을 받았을 때 GPT의 답변을 채팅 로그에 추가
                 var responseJson = request.downloadHandler.text;
                 Debug.Log("Response Text: " + responseJson); // 응답 로그 출력
 
                 try
                 {
-                    var responseObject = JsonConvert.DeserializeObject<ClaudeResponse>(responseJson);
+                    var responseObject = JsonConvert.DeserializeObject<GPTResponse>(responseJson);
 
-                    if (responseObject != null && responseObject.completion == null)
+                    if (responseObject != null && responseObject.choices != null && responseObject.choices.Count > 0)
                     {
-                        // Claude의 응답이 content 배열 내에 있는 경우 처리
-                        var parsedResponse = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseJson);
-                        if (parsedResponse.ContainsKey("content"))
-                        {
-                            var contentArray = parsedResponse["content"] as Newtonsoft.Json.Linq.JArray;
-                            if (contentArray != null && contentArray.Count > 0)
-                            {
-                                string claudeResponse = contentArray[0]["text"].ToString();
-                                AddMessageToChatLog("Claude: " + claudeResponse);
-                            }
-                        }
-                    }
-                    else if (responseObject != null && !string.IsNullOrEmpty(responseObject.completion))
-                    {
-                        AddMessageToChatLog("Claude: " + responseObject.completion);
+                        string gptResponse = responseObject.choices[0].message.content;
+                        AddMessageToChatLog("<i><color=#808080>GPT: " + gptResponse + "</color></i>");
+                        ApplyAIResponse(gptResponse); // AI 응답을 플레이어 상태에 반영
                     }
                     else
                     {
-                        Debug.LogWarning("Response object is null or completion is empty.");
+                        Debug.LogWarning("Response object is null or choices are empty.");
                     }
                 }
                 catch (JsonException jsonEx)
                 {
                     Debug.LogError("JSON Parsing Error: " + jsonEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError("Unexpected Error: " + ex.Message);
                 }
             }
         }
@@ -108,20 +101,107 @@ public class PlayerChatController : MonoBehaviour
     {
         var playData = new
         {
-            model = "claude-3-5-sonnet-20241022",
-            max_tokens = 512,
+            model = "gpt-4o-2024-11-20",
             messages = new[]
             {
                 new { role = "user", content = userMessage },
-                new { role = "user", content = "Scenario: " + PlayerDataManager.Instance.selectedSenario + ", Player Name: " + PlayerDataManager.Instance.playerName + ", Player Sex: " + PlayerDataManager.Instance.playerSex + ", Player Job: " + PlayerDataManager.Instance.playerJob + ", Player Details: " + PlayerDataManager.Instance.playerDetails }
-            }
+                new { role = "user", content = "Scenario: " + PlayerDataManager.Instance.selectedSenario 
+                + ", Player Name: " + PlayerDataManager.Instance.playerName 
+                + ", Player Sex: " + PlayerDataManager.Instance.playerSex 
+                + ", Player Job: " + PlayerDataManager.Instance.playerJob 
+                + ", Player Max HP: " + PlayerDataManager.Instance.playerHP
+                + ", Player current HP: " + PlayerDataManager.Instance.currentHP
+                + ", Player Max MP: " + PlayerDataManager.Instance.playerMP
+                + ", Player current MP: " + PlayerDataManager.Instance.currentMP
+                + ", Player Gold: " + PlayerDataManager.Instance.playerGold
+                + ", Player Details: " + PlayerDataManager.Instance.playerDetails }
+            },
+            max_tokens = 1000
         };
 
         return JsonConvert.SerializeObject(playData);
     }
+
+    // AI의 응답을 받고 이를 처리하는 메서드
+    public void ApplyAIResponse(string response)
+    {
+        // Python 서버로 보내는 코루틴 시작
+        StartCoroutine(SendToPythonServer(response)); 
+    }
+
+    // AI 응답을 처리하기 위해 Python 서버로 보내는 메서드
+    private IEnumerator SendToPythonServer(string aiResponse)
+    {
+        // 요청할 JSON 데이터를 생성
+        var requestData = new Dictionary<string, string>
+        {
+            { "response", aiResponse }
+        };
+        string jsonData = JsonConvert.SerializeObject(requestData);
+
+        // UnityWebRequest를 이용하여 POST 요청
+        using (UnityWebRequest request = new UnityWebRequest(pythonServerUrl, "POST"))
+        {
+            byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            // 요청을 보냄
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error Sending Data to Python Server: " + request.error);
+            }
+            else
+            {
+                // 서버에서 반환된 응답 처리
+                string responseText = request.downloadHandler.text;
+                Debug.Log("Received from Python Server: " + responseText);
+
+                try
+                {
+                    // JSON 응답을 파싱하여 데이터 반영
+                    var parsedResponse = JsonConvert.DeserializeObject<Dictionary<string, int>>(responseText);
+                    if (parsedResponse != null)
+                    {
+                        int hpChange = parsedResponse.ContainsKey("hp_change") ? parsedResponse["hp_change"] : 0;
+                        int mpChange = parsedResponse.ContainsKey("mp_change") ? parsedResponse["mp_change"] : 0;
+                        int goldChange = parsedResponse.ContainsKey("gold_change") ? parsedResponse["gold_change"] : 0;
+
+                        PlayerDataManager.Instance.SetPlayerHP(
+                            Mathf.Clamp(PlayerDataManager.Instance.currentHP + hpChange, 0, PlayerDataManager.Instance.playerHP)
+                        );
+                        PlayerDataManager.Instance.SetPlayerMP(
+                            Mathf.Clamp(PlayerDataManager.Instance.currentMP + mpChange, 0, PlayerDataManager.Instance.playerMP)
+                        );
+                        PlayerDataManager.Instance.SetPlayerGold(
+                            Mathf.Max(PlayerDataManager.Instance.playerGold + goldChange, 0)
+                        );
+                    }
+                }
+                catch (JsonException jsonEx)
+                {
+                    Debug.LogError("JSON Parsing Error: " + jsonEx.Message);
+                }
+            }
+        }
+    }
 }
 
-public class ClaudeResponse
+public class GPTResponse
 {
-    public string completion { get; set; }
+    public List<Choice> choices { get; set; }
+
+    public class Choice
+    {
+        public Message message { get; set; }
+    }
+
+    public class Message
+    {
+        public string role { get; set; }
+        public string content { get; set; }
+    }
 }

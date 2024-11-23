@@ -25,6 +25,11 @@ public class FemaleJobController : MonoBehaviour
         selectedJob = FemaleJobs.FKnight;
         UpdateConfirmButton();
         PlayerDataManager.Instance.SetPlayerJob("기사");
+        PlayerDataManager.Instance.SetPlayerHP(250);
+        PlayerDataManager.Instance.SetCurrentHP(250);
+        PlayerDataManager.Instance.SetPlayerMP(100);
+        PlayerDataManager.Instance.SetCurrentMP(100);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 여성 마법사 선택 시 호출될 메서드
@@ -33,6 +38,11 @@ public class FemaleJobController : MonoBehaviour
         selectedJob = FemaleJobs.FMagician;
         UpdateConfirmButton();
         PlayerDataManager.Instance.SetPlayerJob("마법사");
+        PlayerDataManager.Instance.SetPlayerHP(100);
+        PlayerDataManager.Instance.SetCurrentHP(100);
+        PlayerDataManager.Instance.SetPlayerMP(250);
+        PlayerDataManager.Instance.SetCurrentMP(250);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 여성 자객 선택 시 호출될 메서드
@@ -41,6 +51,11 @@ public class FemaleJobController : MonoBehaviour
         selectedJob = FemaleJobs.FAssassin;
         UpdateConfirmButton();
         PlayerDataManager.Instance.SetPlayerJob("자객");
+        PlayerDataManager.Instance.SetPlayerHP(200);
+        PlayerDataManager.Instance.SetCurrentHP(200);
+        PlayerDataManager.Instance.SetPlayerMP(150);
+        PlayerDataManager.Instance.SetCurrentMP(150);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 여성 성직자 선택 시 호출될 메서드
@@ -49,6 +64,11 @@ public class FemaleJobController : MonoBehaviour
         selectedJob = FemaleJobs.MPriestess;
         UpdateConfirmButton();
         PlayerDataManager.Instance.SetPlayerJob("성직자");
+        PlayerDataManager.Instance.SetPlayerHP(150);
+        PlayerDataManager.Instance.SetCurrentHP(150);
+        PlayerDataManager.Instance.SetPlayerMP(200);
+        PlayerDataManager.Instance.SetCurrentMP(200);
+        PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
     // 확인 버튼을 누를 시 호출될 메서드
@@ -72,19 +92,19 @@ public class FemaleJobController : MonoBehaviour
         {
             if (job == "기사")
             {
-                prefabToInstantiate = PlayerDataManager.Instance.femaleKnightPrefab;
+                prefabToInstantiate = PlayerDataManager.Instance.FemaleKnightPrefab;
             }
             else if (job == "마법사")
             {
-                prefabToInstantiate = PlayerDataManager.Instance.femaleMagicianPrefab;
+                prefabToInstantiate = PlayerDataManager.Instance.FemaleMagicianPrefab;
             }
             else if (job == "자객")
             {
-                prefabToInstantiate = PlayerDataManager.Instance.femaleAssassinPrefab;
+                prefabToInstantiate = PlayerDataManager.Instance.FemaleAssassinPrefab;
             }
             else if (job == "성직자")
             {
-                prefabToInstantiate = PlayerDataManager.Instance.femalePriestessPrefab;
+                prefabToInstantiate = PlayerDataManager.Instance.FemalePriestessPrefab;
             }
         }
 

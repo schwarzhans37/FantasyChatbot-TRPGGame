@@ -8,21 +8,27 @@ public class PlayerDataManager : MonoBehaviour
     public static PlayerDataManager Instance; // 싱글톤 패턴
 
     // 플레이어의 정보 저장
-    public string selectedSenario;
-    public string playerName;
-    public string playerSex;
-    public string playerJob;
-    public string playerDetails;
+    public string selectedSenario; // 선택한 시나리오
+    public string senarioPrompt;  // 생성형 AI에게 보낼 시나리오 정보 및 요구사항
+    public string playerName; // 플레이어 캐릭터 이름
+    public string playerSex; // 플레이어 캐릭터 성별
+    public string playerJob; // 플레이어 캐릭터 직업
+    public int playerHP; // 플레이어 캐릭터 최대체력
+    public int currentHP; // 현재 플레이어 체력
+    public int playerMP; // 플레이어 캐릭터 최대마나
+    public int currentMP; // 현재 플레이어 마나
+    public int playerGold; // 플레이어 소유 골드
+    public string playerDetails; // 플레이어 캐릭터 상세정보
 
     public GameObject MaleKnightPrefab;
     public GameObject MaleMagicianPrefab;
     public GameObject MaleAssassinPrefab;
     public GameObject MalePriestPrefab;
 
-    public GameObject femaleKnightPrefab;
-    public GameObject femaleMagicianPrefab;
-    public GameObject femaleAssassinPrefab;
-    public GameObject femalePriestessPrefab;
+    public GameObject FemaleKnightPrefab;
+    public GameObject FemaleMagicianPrefab;
+    public GameObject FemaleAssassinPrefab;
+    public GameObject FemalePriestessPrefab;
 
     [HideInInspector] public GameObject currentProfilePrefab; //현재 생성되있는 프로필 프리팹 참조
 
@@ -47,6 +53,10 @@ public class PlayerDataManager : MonoBehaviour
     {
         selectedSenario = senario;
     }
+    public void SetSenarioPrompt(string prompt)
+    {
+        senarioPrompt = prompt;
+    }
     public void SetPlayerName(string name)
     {
         playerName = name;
@@ -62,6 +72,36 @@ public class PlayerDataManager : MonoBehaviour
     public void SetPlayerJob(string job)
     {
         playerJob = job;
+        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+    }
+
+    public void SetPlayerHP(int hp)
+    {
+        playerHP = hp;
+        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+    }
+
+    public void SetCurrentHP(int chp)
+    {
+        currentHP = chp;
+        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+    }
+
+    public void SetPlayerMP(int mp)
+    {
+        playerMP = mp;
+        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+    }
+
+    public void SetCurrentMP(int cmp)
+    {
+        currentMP = cmp;
+        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+    }
+
+    public void SetPlayerGold(int gold)
+    {
+        playerGold = gold;
         OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
     }
 
