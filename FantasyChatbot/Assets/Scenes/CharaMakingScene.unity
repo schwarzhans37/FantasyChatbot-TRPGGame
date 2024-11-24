@@ -15683,14 +15683,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Arisu RPG\n----------------------------------------------------------------------------------\n\uB9C8\uBC95
-    \uC0AC\uC6A9\uC774 \uAC00\uB2A5\uD55C \uC911\uC138 \uBC30\uACBD\uC758 \uD310\uD0C0\uC9C0
-    \uC138\uACC4\uAC00 \uBC30\uACBD\uC785\uB2C8\uB2E4.\n\uB9C8\uC655 \uBCA8\uC81C\uBD80\uBE0C\uB97C
-    \uC4F0\uB7EC\uB728\uB9AC\uAE30 \uC704\uD55C \uC5EC\uC815\uC758 \uAE38\uC5D0 \uC624\uB974\uC2ED\uC2DC\uC624.\n\n\uC774
-    \uC774\uC57C\uAE30\uB294 \uC704\uADF8\uB4DC\uB77C\uC2E4 \uB300\uB959, \uC778\uAC04\uB4E4\uC758
-    \uAD6D\uAC00\uC778 \uC5D0\uB9AC\uC2A4 \uC81C\uAD6D\uC5D0\uC11C \uC2DC\uC791\uB429\uB2C8\uB2E4.
-    \uB2F9\uC2E0\uC758 \uCE90\uB9AD\uD130\uB97C \uC0DD\uC131\uD558\uACE0 \uC774\uC57C\uAE30\uB97C
-    \uC990\uACA8\uBCF4\uC138\uC694."
+  m_text: "Arisu RPG\n----------------------------------------------------------------------------------\n\uC774
+    \uC2DC\uB098\uB9AC\uC624\uB294 \uC704\uADF8\uB4DC\uB77C\uC2E4 \uB300\uB959, \uC778\uAC04\uB4E4\uC758
+    \uAD6D\uAC00\uC778 \uC5D0\uB9AC\uC2A4 \uC81C\uAD6D\uC5D0\uC11C \uC2DC\uC791\uB429\uB2C8\uB2E4.\n\uB9C8\uBC95
+    \uC0AC\uC6A9\uC774 \uAC00\uB2A5\uD55C \uBCA8 \uC5D0\uD3EC\uD06C \uD48D\uC758
+    \uC911\uC138 \uD310\uD0C0\uC9C0 \uC138\uACC4\uAC00 \uBC30\uACBD\uC785\uB2C8\uB2E4.\n\n\uB9C8\uC655
+    \uBCA8\uC81C\uBD80\uBE0C\uB97C \uC4F0\uB7EC\uB728\uB9AC\uACE0 \uD3C9\uD654\uB97C
+    \uB418\uCC3E\uAE30 \uC704\uD574 \uB2F9\uC2E0\uC758 \uCE90\uB9AD\uD130\uB97C \uC0DD\uC131\uD558\uACE0
+    \uC774\uC57C\uAE30\uB97C \uC990\uACA8\uBCF4\uC138\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
   m_sharedMaterial: {fileID: -6576355902149967249, guid: 12d0ceadca28e4f4e97599073dcdd30b, type: 2}
@@ -15717,8 +15717,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
