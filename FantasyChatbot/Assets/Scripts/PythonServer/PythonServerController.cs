@@ -2,10 +2,29 @@ using System.Diagnostics;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
+using Newtonsoft.Json;
+using System.Text;
+using System.Collections.Generic;
 
 public class PythonServerController : MonoBehaviour
 {
-    private string pythonServerUrl = "http://127.0.0.1:5000/process_response";
+    public static PythonServerController Instance; // Singleton Instance
+
+    private string pythonServerUrl = "http://127.0.0.1:5000/parse_ai_response"; // Python 서버의 주소
+
+    private void Awake()
+    {
+        // Singleton 패턴 적용
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -17,7 +36,7 @@ public class PythonServerController : MonoBehaviour
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = "python",
-            Arguments = "FlaskServer.py", // Python 서버 파일 이름 (같은 경로에 있기 때문에 파일명만 지정)
+            Arguments = "Perse_Response_Server.py", // Python 서버 파일 이름 (같은 경로에 있기 때문에 파일명만 지정)
             WorkingDirectory = Application.dataPath + "/Scripts/PythonServer", // 현재 경로를 기준으로 Python 파일 위치 지정
             CreateNoWindow = true, // 창을 만들지 않음
             UseShellExecute = false // 명령 프롬프트 없이 실행
@@ -26,35 +45,67 @@ public class PythonServerController : MonoBehaviour
         Process process = Process.Start(startInfo);
     }
 
-    public IEnumerator SendMessageToPythonServer(string message)
+    public void ParseAIResponse(string responseText)
     {
-        // POST 요청으로 데이터를 Python 서버에 전송
-        WWWForm form = new WWWForm();
-        form.AddField("message", message);
+        StartCoroutine(SendToPythonServer(responseText));
+    }
 
-        using (UnityWebRequest www = UnityWebRequest.Post(pythonServerUrl, form))
+    private IEnumerator SendToPythonServer(string responseText)
+    {
+        // 요청 데이터를 JSON으로 준비
+        var requestData = new
         {
-            yield return www.SendWebRequest();
+            response = responseText
+        };
 
-            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+        string json = JsonConvert.SerializeObject(requestData);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+
+        // UnityWebRequest를 이용한 POST 요청
+        using (UnityWebRequest request = new UnityWebRequest(pythonServerUrl, "POST"))
+        {
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                UnityEngine.Debug.LogError("Error Sending Message to Python Server: " + www.error);
+                UnityEngine.Debug.LogError("Error Sending Response to Python Server: " + request.error);
             }
             else
             {
-                // Python 서버로부터의 응답 처리
-                string responseText = www.downloadHandler.text;
-                UnityEngine.Debug.Log("Response from Python Server: " + responseText);
+                // 서버로부터 받은 응답을 처리
+                var responseJson = request.downloadHandler.text;
+                try
+                {
+                    var parsedResponse = JsonConvert.DeserializeObject<Dictionary<string, int>>(responseJson);
 
-                // Python 서버 응답을 파싱하여 상태 변화 반영 (여기서는 다른 클래스에서 처리해야 합니다)
-                PlayerChatController playerChatController = FindObjectOfType<PlayerChatController>();
-                if (playerChatController != null)
-                {
-                    playerChatController.ApplyAIResponse(responseText);
+                    if (parsedResponse != null)
+                    {
+                        if (parsedResponse.ContainsKey("hp_change"))
+                        {
+                            int hpChange = parsedResponse["hp_change"];
+                            PlayerDataManager.Instance.SetPlayerHP(Mathf.Clamp(PlayerDataManager.Instance.currentHP + hpChange, 0, PlayerDataManager.Instance.playerHP));
+                        }
+
+                        if (parsedResponse.ContainsKey("mp_change"))
+                        {
+                            int mpChange = parsedResponse["mp_change"];
+                            PlayerDataManager.Instance.SetPlayerMP(Mathf.Clamp(PlayerDataManager.Instance.currentMP + mpChange, 0, PlayerDataManager.Instance.playerMP));
+                        }
+
+                        if (parsedResponse.ContainsKey("gold_change"))
+                        {
+                            int goldChange = parsedResponse["gold_change"];
+                            PlayerDataManager.Instance.SetPlayerGold(Mathf.Max(PlayerDataManager.Instance.playerGold + goldChange, 0));
+                        }
+                    }
                 }
-                else
+                catch (JsonException jsonEx)
                 {
-                    UnityEngine.Debug.LogError("PlayerChatController not found in the scene.");
+                    UnityEngine.Debug.LogError("JSON Parsing Error while processing Python server response: " + jsonEx.Message);
                 }
             }
         }
