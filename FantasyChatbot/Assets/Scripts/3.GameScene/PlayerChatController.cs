@@ -95,7 +95,7 @@ public class PlayerChatController : MonoBehaviour
                         chatHistory.Add(new Message { role = "assistant", content = gptResponse });
 
                         // PythonServerController에게 파싱을 요청
-                        // PythonServerController.Instance.ParseAIResponse(gptResponse);
+                        PythonServerController.Instance.ParseAIResponse(gptResponse);
                     }
                     else
                     {
@@ -123,13 +123,13 @@ public class PlayerChatController : MonoBehaviour
         };
 
         // 최근 대화 중 10개만 포함
-        var recentMessages = chatHistory.Count > 10 ? chatHistory.GetRange(chatHistory.Count - 10, 10) : new List<Message>(chatHistory);
+        var recentMessages = chatHistory.Count > 15 ? chatHistory.GetRange(chatHistory.Count - 15, 15) : new List<Message>(chatHistory);
 
         var playData = new
         {
             model = "gpt-4o-2024-11-20",
             messages = initialMessages.Union(recentMessages).ToArray(),
-            max_tokens = 1000
+            max_tokens = 10000
         };
 
         return JsonConvert.SerializeObject(playData);
