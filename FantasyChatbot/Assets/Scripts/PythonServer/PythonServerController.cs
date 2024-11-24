@@ -36,9 +36,9 @@ public class PythonServerController : MonoBehaviour
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = "python",
-            Arguments = "Perse_Response_Server.py", // Python 서버 파일 이름 (같은 경로에 있기 때문에 파일명만 지정)
+            Arguments = "Parse_Response_Server.py", // Python 서버 파일 이름 (같은 경로에 있기 때문에 파일명만 지정)
             WorkingDirectory = Application.dataPath + "/Scripts/PythonServer", // 현재 경로를 기준으로 Python 파일 위치 지정
-            CreateNoWindow = true, // 창을 만들지 않음
+            CreateNoWindow = false, // 창을 만들지 않음
             UseShellExecute = false // 명령 프롬프트 없이 실행
         };
 
@@ -87,13 +87,13 @@ public class PythonServerController : MonoBehaviour
                         if (parsedResponse.ContainsKey("hp_change"))
                         {
                             int hpChange = parsedResponse["hp_change"];
-                            PlayerDataManager.Instance.SetPlayerHP(Mathf.Clamp(PlayerDataManager.Instance.currentHP + hpChange, 0, PlayerDataManager.Instance.playerHP));
+                            PlayerDataManager.Instance.SetCurrentHP(Mathf.Clamp(PlayerDataManager.Instance.currentHP + hpChange, 0, PlayerDataManager.Instance.playerHP));
                         }
 
                         if (parsedResponse.ContainsKey("mp_change"))
                         {
                             int mpChange = parsedResponse["mp_change"];
-                            PlayerDataManager.Instance.SetPlayerMP(Mathf.Clamp(PlayerDataManager.Instance.currentMP + mpChange, 0, PlayerDataManager.Instance.playerMP));
+                            PlayerDataManager.Instance.SetCurrentMP(Mathf.Clamp(PlayerDataManager.Instance.currentMP + mpChange, 0, PlayerDataManager.Instance.playerMP));
                         }
 
                         if (parsedResponse.ContainsKey("gold_change"))

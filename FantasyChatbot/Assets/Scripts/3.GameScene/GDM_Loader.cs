@@ -24,6 +24,9 @@ public class GDM_Loader : MonoBehaviour
         {
             DataManagerLoad();
             UpdatePlayerInfoUI();
+
+            // PlayerDataManager의 OnPlayerInfoUpdated 이벤트 구독
+            PlayerDataManager.Instance.OnPlayerInfoUpdated += UpdatePlayerInfoUI;
         }
         else
         {
