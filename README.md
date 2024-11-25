@@ -2,6 +2,8 @@
 ### 생성형AI활용개발실무 경진대회용 프로그램
 #### 작품명 : FantasyChatbot-TRPGGame
 
+#### 개발자 : 한승민
+
 #### 작품 소개
 - __장르__ : TRPG
 - __개발 도구__ : Unity, ChatGPT-4o, Stable Diffusion, python Flask & spaCy
@@ -15,3 +17,6 @@
   - 캐릭터의 이름과 상세설명을 기입
   - GPT에게 시나리오의 줄거리와 플레이어 캐릭터의 정보를 전달, 게임 마스터로서 정보를 기억하고 이야기를 전개
   - 이야기 전개에 따른 GPT의 응답에 따라 HP, MP, Gold 등의 가시적인 UI요소가 실시간 변화함 (python SpaCy를 통한 파싱 응용)
+  - Stable Diffusion을 이용해 몰입감을 위한 CG 생성
+
+#### 개선 방안
