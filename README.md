@@ -53,7 +53,10 @@
     ![image](https://github.com/user-attachments/assets/987e1e31-ff78-45f3-a9a4-8de90b9d6364)
 
   - 이야기 전개에 따른 GPT의 응답에 따라 HP, MP, Gold 등의 가시적인 UI요소가 실시간 변화함 (python SpaCy를 통한 파싱 응용)
+  
   - Stable Diffusion을 이용해 몰입감을 위한 CG 생성
+    ![image](https://github.com/user-attachments/assets/36aaeb5f-b12c-486c-9d8f-166da0b0ff45)
+
 
 - __결과__
   (사진 첨부 예정) 
