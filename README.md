@@ -79,7 +79,8 @@
 ***
 
 > #### 기타
-  제작에 사용된 배경음악
+  제작에 사용된 배경음악 
+  __저작권 : https://bluearchive.nexon.com/home__
   -  BlueArchive - 01 Mitsukiyo 01 Constant Moderato 
   -  BlueArchive - Constant Moderato Piano Arrange
   
