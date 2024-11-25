@@ -60,7 +60,7 @@
     ![image](https://github.com/user-attachments/assets/36aaeb5f-b12c-486c-9d8f-166da0b0ff45)
     <p></p>
 
-- __결과__
+> #### 결과
   (사진 첨부 예정) 
 
 ***
