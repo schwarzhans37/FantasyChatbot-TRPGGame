@@ -75,3 +75,11 @@
   - 프롬프트에 입력한 AI 응답 강제 완화 및 파싱 알고리즘의 개선을 통한 다채로운 묘사 유도
   - 대화 흐름에 따른 배경 이미지 교체
   - CG(캐릭터 이미지, 배경이미지 등) 자동생성 기능
+
+***
+
+> #### 기타
+  제작에 사용된 배경음악
+  -  BlueArchive - 01 Mitsukiyo 01 Constant Moderato 
+  -  BlueArchive - Constant Moderato Piano Arrange
+  
