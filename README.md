@@ -21,7 +21,11 @@
   - 필요 역할군 : 게임 마스터(사회자), 플레이어(참여자)
   - 필요 정보 : 시나리오, 아이템 테이블 등의 "룰북", 참여자들의 "캐릭터" 정보 등
 
-- __개발 도구__ : Unity, ChatGPT-4o, Stable Diffusion, python Flask & spaCy
+- __개발 도구__
+  -  Unity (게임 엔진)
+  -  ChatGPT-4o (게임 채팅)
+  -  Stable Diffusion (게임에 사용할 이미지 생성)
+  -  python Flask & spaCy (자연어 NLP를 위한 라이브러리)
 
 - __개요__ : 게임 마스터의 역할을 맡는 AI와 함께 채팅을 바탕으로 진행하는 혼자서도 즐길 수 있는 TRPG 챗봇 게임
 
