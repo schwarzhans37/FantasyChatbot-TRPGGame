@@ -22,7 +22,7 @@
 
 - __개발 도구__
   -  Unity (게임 엔진)
-  -  ChatGPT-4o (게임 채팅)
+  -  ChatGPT-4o (게임 채팅), Claude 3.5 sonnet (개발 테스트)
   -  Stable Diffusion (게임에 사용할 이미지 생성)
   -  python Flask & spaCy (자연어 NLP를 위한 라이브러리)
 
