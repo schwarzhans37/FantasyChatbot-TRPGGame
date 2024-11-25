@@ -55,6 +55,8 @@
   - 이야기 전개에 따른 GPT의 응답에 따라 HP, MP, Gold 등의 가시적인 UI요소가 실시간 변화함 (python SpaCy를 통한 파싱 응용)
   - Stable Diffusion을 이용해 몰입감을 위한 CG 생성
 
+- __결과__
+  (사진 첨부 예정) 
 
 ***
 
