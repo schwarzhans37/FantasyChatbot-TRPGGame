@@ -16,11 +16,11 @@ public class ChoiceSexButtonController : MonoBehaviour
 
     void Start()
     {
-        // 초기 상태에서 확인 버튼을 비활성화합니다.
+        // 초기 상태에서 확인 버튼 비활성화
         confirmButton.interactable = false;
     }
 
-    // 남성 선택 시 호출될 메서드
+    // "남성" 선택 시 호출 메서드
     public void OnMaleSelected()
     {
         selectedGender = Gender.Male;
@@ -28,7 +28,7 @@ public class ChoiceSexButtonController : MonoBehaviour
         PlayerDataManager.Instance.SetPlayerSex("남성");
     }
 
-    // 여성 선택 시 호출될 메서드
+    // "여성" 선택 시 호출 메서드
     public void OnFemaleSelected()
     {
         selectedGender = Gender.Female;
@@ -36,7 +36,7 @@ public class ChoiceSexButtonController : MonoBehaviour
         PlayerDataManager.Instance.SetPlayerSex("여성");
     }
 
-    // 확인 버튼을 누를 시 호출될 메서드
+    // 확인 버튼을 누를 시 호출 메서드
     public void OnConfirmButtonPressed()
     {
         if (selectedGender == Gender.Male)
@@ -51,14 +51,14 @@ public class ChoiceSexButtonController : MonoBehaviour
         }
     }
 
-    // 되돌리기 버튼을 누를 시 호출될 메서드
+    // 되돌리기 버튼을 누를 시 호출 메서드
     public void OnBackButtonPressed()
     {
         // 패널 비활성화
         ChoiceSex.SetActive(false);
     }
 
-    // 선택에 따라 확인 버튼 활성화 여부를 업데이트하는 메서드
+    // 선택에 따라 확인 버튼 활성화 여부 업데이트 메서드
     private void UpdateConfirmButton()
     {
         confirmButton.interactable = (selectedGender != Gender.None);
