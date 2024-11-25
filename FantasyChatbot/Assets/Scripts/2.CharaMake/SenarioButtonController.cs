@@ -29,7 +29,7 @@ public class SenarioButtonController : MonoBehaviour
 
     void Start()
     {
-        // 초기 상태에서 확인 버튼을 비활성화합니다.
+        // 초기 상태에서 확인 버튼 비활성화
         confirmButton.interactable = false;
 
         // 버튼 초기화
@@ -40,6 +40,7 @@ public class SenarioButtonController : MonoBehaviour
         UpdatePageText();
     }
 
+    // **** AI에게 보낼 [잊어서는 안되는 정보들]의 프롬프트 ****
     public void OnSenarioSelected()
     {
         selectedSenario = Senario.Arisu;
@@ -87,7 +88,7 @@ public class SenarioButtonController : MonoBehaviour
         );
     }
 
-    // 홈 버튼을 누를 시 호출될 메서드
+    // 홈 버튼을 누를 시 호출 메서드
     public void OnHomeButtonPressed()
     {
         // PlayerDataManager 인스턴스 값 초기화 요청
@@ -97,13 +98,13 @@ public class SenarioButtonController : MonoBehaviour
         SceneManager.LoadScene("MainMenuScene");
     }
 
-    // 확인 버튼을 누를 시 호출될 메서드
+    // 확인 버튼을 누를 시 호출 메서드
     public void OnConfirmButtonPressed()
     {
         ChoiceSex.SetActive(true);
     }
 
-    // 선택에 따라 확인 버튼 활성화 여부를 업데이트하는 메서드
+    // 선택에 따라 확인 버튼 활성화 여부 업데이트 메서드
     private void UpdateConfirmButton()
     {
         confirmButton.interactable = (selectedSenario != Senario.None);

@@ -15,7 +15,7 @@ public class PlayerChatController : MonoBehaviour
     public Button sendButton; // 채팅 메세지 전송 버튼
     public TextMeshProUGUI chatLogText; // 채팅 로그 UI (채팅 내용을 표시)
     private string openaiAPIurl = "https://api.openai.com/v1/chat/completions";
-    private string openaiAPIkey = ""; // 실제 키로 변경해야 합니다.
+    private string openaiAPIkey = ""; // 실제 키로 변경해야함
 
     private List<Message> chatHistory = new List<Message>(); // GPT 화를 위한 채팅 히스토리 관리
 

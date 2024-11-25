@@ -17,8 +17,8 @@ public class PlayerInfoButtonController : MonoBehaviour
 
     public Button confirmButton; // 확인 버튼
 
-    private string anthropicAPIurl = "https://api.openai.com/v1/chat/completions";
-    private string anthropicAPIkey = "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";
+    private string openaiAPIurl = "https://api.openai.com/v1/chat/completions";
+    private string openaiAPIkey = ""; // 실제 키로 변경 필요
 
     void Start()
     {
@@ -69,13 +69,13 @@ public class PlayerInfoButtonController : MonoBehaviour
     {        
         string playInfoJson = CreatePlayInfoJson();
 
-        using (UnityWebRequest request = new UnityWebRequest(anthropicAPIurl, "POST"))
+        using (UnityWebRequest request = new UnityWebRequest(openaiAPIurl, "POST"))
         {
             byte[] bodyRaw = Encoding.UTF8.GetBytes(playInfoJson);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("x-api-key", anthropicAPIkey);
+            request.SetRequestHeader("x-api-key", openaiAPIkey);
             request.SetRequestHeader("Anthropic-Version", "2023-06-01");
 
             // 인증서 확인 무시

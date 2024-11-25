@@ -78,31 +78,31 @@ public class PlayerDataManager : MonoBehaviour
     public void SetPlayerHP(int hp)
     {
         playerHP = hp;
-        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+        OnPlayerInfoUpdated?.Invoke(); // 최대체력이 변경되면 이벤트 발생
     }
 
     public void SetCurrentHP(int chp)
     {
         currentHP = chp;
-        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+        OnPlayerInfoUpdated?.Invoke(); // 현재체력이 변경되면 이벤트 발생
     }
 
     public void SetPlayerMP(int mp)
     {
         playerMP = mp;
-        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+        OnPlayerInfoUpdated?.Invoke(); // 최대마나가 변경되면 이벤트 발생
     }
 
     public void SetCurrentMP(int cmp)
     {
         currentMP = cmp;
-        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+        OnPlayerInfoUpdated?.Invoke(); // 현재마나가 변경되면 이벤트 발생
     }
 
     public void SetPlayerGold(int gold)
     {
         playerGold = gold;
-        OnPlayerInfoUpdated?.Invoke(); // 직업이 변경되면 이벤트 발생
+        OnPlayerInfoUpdated?.Invoke(); // 보유골드가 변경되면 이벤트 발생
     }
 
     public void SetPlayerDetails(string details)

@@ -15,11 +15,11 @@ public class MaleJobController : MonoBehaviour
 
     void Start()
     {
-        // 초기 상태에서 확인 버튼을 비활성화합니다.
+        // 초기 상태에서 확인 버튼 비활성화
         confirmButton.interactable = false;
     }
 
-    // 남성 기사 선택 시 호출될 메서드
+    // 남성 기사 선택 시 호출 메서드
     public void OnMaleKnightSelected()
     {
         selectedJob = MaleJobs.MKnight;
@@ -32,7 +32,7 @@ public class MaleJobController : MonoBehaviour
         PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
-    // 남성 마법사 선택 시 호출될 메서드
+    // 남성 마법사 선택 시 호출 메서드
     public void OnMaleMagicianSelected()
     {
         selectedJob = MaleJobs.MMagician;
@@ -45,7 +45,7 @@ public class MaleJobController : MonoBehaviour
         PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
-    // 남성 궁수 선택 시 호출될 메서드
+    // 남성 궁수 선택 시 호출 메서드
     public void OnMaleArcherSelected()
     {
         selectedJob = MaleJobs.MArcher;
@@ -58,7 +58,7 @@ public class MaleJobController : MonoBehaviour
         PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
-    // 남성 성직자 선택 시 호출될 메서드
+    // 남성 성직자 선택 시 호출 메서드
     public void OnMalePriestSelected()
     {
         selectedJob = MaleJobs.MPriest;
@@ -70,7 +70,7 @@ public class MaleJobController : MonoBehaviour
         PlayerDataManager.Instance.SetPlayerGold(500);
     }
 
-    // 확인 버튼을 누를 시 호출될 메서드
+    // 확인 버튼을 누를 시 호출 메서드
     public void OnConfirmButtonPressed()
     {
         if (selectedJob == MaleJobs.MKnight || selectedJob == MaleJobs.MMagician || selectedJob == MaleJobs.MArcher || selectedJob == MaleJobs.MPriest)
@@ -110,25 +110,25 @@ public class MaleJobController : MonoBehaviour
 
         if (prefabToInstantiate != null)
         {
-            // 기존에 생성된 프리팹이 있다면 삭제합니다.
+            // 기존에 생성된 프리팹이 있다면 삭제
             if (PlayerDataManager.Instance.currentProfilePrefab != null)
             {
                 Destroy(PlayerDataManager.Instance.currentProfilePrefab);
             }
 
-            // 새로운 프리팹을 생성하고, 생성된 프리팹을 currentProfilePrefab에 저장합니다.
+            // 새로운 프리팹을 생성하고, 생성된 프리팹을 currentProfilePrefab에 저장
             PlayerDataManager.Instance.currentProfilePrefab = Instantiate(prefabToInstantiate, PlayerInfomations);
         }
     }
 
-    // 되돌리기 버튼을 누를 시 호출될 메서드
+    // 되돌리기 버튼을 누를 시 호출 메서드
     public void OnBackButtonPressed()
     {
         // 패널 비활성화
         MaleJob.SetActive(false);
     }
 
-    // 선택에 따라 확인 버튼 활성화 여부를 업데이트하는 메서드
+    // 선택에 따라 확인 버튼 활성화 여부 업데이트 메서드
     private void UpdateConfirmButton()
     {
         confirmButton.interactable = (selectedJob != MaleJobs.None);

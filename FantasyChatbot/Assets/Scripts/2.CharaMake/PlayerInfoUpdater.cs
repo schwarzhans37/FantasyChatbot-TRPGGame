@@ -20,7 +20,7 @@ public class PlayerInfoUpdater : MonoBehaviour
             PlayerDataManager.Instance.OnPlayerInfoUpdated += UpdatePlayerInfo;
         }
         
-        // 초기 UI 값을 반영합니다.
+        // 초기 UI 값을 반영
         UpdatePlayerInfo();
     }
 
