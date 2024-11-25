@@ -3,18 +3,18 @@
 
 ***
 
-#### 작품명 : FantasyChatbot-TRPGGame
+> #### 작품명 : FantasyChatbot-TRPGGame
 
-#### 개발자 : 한승민(schwarzhans37)
+> #### 개발자 : 한승민(schwarzhans37)
 
-#### 아이디어
+> #### 아이디어
 - 시공간 제약과 최소 인원 제한이 있는 TRPG를 내가 원하는 시간, 공간에서 혼자서라도 즐길 수는 없을까?
 - 게임 마스터의 역할을 인공지능이 대신할 수 없을까?
 - 게임 개발에 있어서 AI가 어디까지 역할을 해낼 수 있을까?
 
 ***
 
-#### 작품 소개
+> #### 작품 소개
 - __개요__ : 게임 마스터의 역할을 맡는 AI와 함께 채팅을 바탕으로 진행하는 혼자서도 즐길 수 있는 TRPG 챗봇 게임
 
 - __모티브__ : TRPG, CYOA
@@ -51,13 +51,14 @@
 
   - GPT에게 시나리오의 줄거리와 플레이어 캐릭터의 정보를 전달, 게임 마스터로서 정보를 기억하고 이야기를 전개
     ![image](https://github.com/user-attachments/assets/987e1e31-ff78-45f3-a9a4-8de90b9d6364)
-
+    프롬프트를 활용해 AI의 자연어 응답 양식을 지정하고 파싱.
+    <p></p>
   - 이야기 전개에 따른 GPT의 응답에 따라 HP, MP, Gold 등의 가시적인 UI요소가 실시간 변화함 (python SpaCy를 통한 파싱 응용)
     ![image](https://github.com/user-attachments/assets/098c47c2-2e51-40fa-83fc-0ddc050766af)
-
+    <p></p>
   - Stable Diffusion을 이용해 몰입감을 위한 CG 생성
     ![image](https://github.com/user-attachments/assets/36aaeb5f-b12c-486c-9d8f-166da0b0ff45)
-
+    <p></p>
 
 - __결과__
   (사진 첨부 예정) 
@@ -65,7 +66,7 @@
 ***
 
 
-#### 향후 발전 요소
+> #### 향후 발전 요소
   - 시나리오 추가
   - 캐릭터 생성에 들어가는 특징(종족, 능력치, 스킬, 아이템 등) 세분화 요소 추가
   - 데미지 공식 추가 (현재는 AI의 판단에 맏기고 있음)
