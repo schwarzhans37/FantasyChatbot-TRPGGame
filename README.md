@@ -60,8 +60,9 @@
     ![image](https://github.com/user-attachments/assets/36aaeb5f-b12c-486c-9d8f-166da0b0ff45)
     <p></p>
 
-> #### 결과
-  (사진 첨부 예정) 
+> #### 결과물
+  ![image](https://github.com/user-attachments/assets/d896ff11-2f0a-422c-afd8-03b7ef8eaefa)
+
 
 ***
 
